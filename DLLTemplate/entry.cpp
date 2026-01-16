@@ -1,14 +1,14 @@
 #include "entry.hpp"
 #include <MinHook.h>
 
-void Cleanup(HMODULE hModule)
+auto Cleanup(HMODULE hModule) -> void
 {
     MH_DisableHook(MH_ALL_HOOKS);
     MH_Uninitialize();
     FreeLibraryAndExitThread(hModule, 0);
 }
 
-bool SetHooks()
+auto SetHooks() -> bool
 {
     if (MH_Initialize() != MH_OK) return false;
 
@@ -16,7 +16,7 @@ bool SetHooks()
 }
 
 // the main entrypoint
-uintptr_t Entry(HMODULE hModule)
+auto Entry(HMODULE hModule) -> uintptr_t
 {
     if (!SetHooks())
         goto Exit;
