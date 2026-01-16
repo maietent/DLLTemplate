@@ -2,4 +2,4 @@
 
 #include <Windows.h>
 
-uintptr_t Entry(HMODULE hModule);
+auto Entry(HMODULE hModule) -> uintptr_t;
